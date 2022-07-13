@@ -39,13 +39,8 @@ class ThemeExtensionGenerator extends GeneratorForAnnotation<ThemeCodegen> {
       }
       buffer.writeln(");}");
       buffer.writeln(
-          "\n@override\nThemeExtension<$className> lerp(ThemeExtension<$className>? other, double t){\nif(other is! $className){ return this;}");
-      buffer.writeln("return $className(");
-      for (var param in parameterList) {
-        buffer.writeln(
-            "${param.name}: ${param.type.getDisplayString(withNullability: false)}.lerp(${param.name},other.${param.name},t)!,");
-      }
-      buffer.writeln(");\n}");
+          "\n@override\nThemeExtension<$className> lerp(ThemeExtension<$className>? other, double t){\nif(other is! $className){ return this;} return configureLERP(other,t);}");
+      buffer.writeln("$className configureLERP($className other, double t);");
       buffer.writeln("}");
       return "$buffer";
     }

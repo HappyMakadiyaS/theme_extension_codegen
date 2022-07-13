@@ -2,7 +2,7 @@ builders:
   themeExtensionGenerator:
     import: 'package:theme_extension_codegen/theme_builder.dart'
     builder_factories: ['themeExtensionGenerator']
+    build_extensions: {".dart": [".g.part"]}
     auto_apply: dependents
-    build_extensions: {".dart": [".themeExtension.part"]}
     build_to: cache
     applies_builders: ["source_gen|combining_builder"]

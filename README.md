@@ -17,23 +17,37 @@ Code generator for creating theme extension for Material app
 Short and useful examples for creating custom theme extension.
 ```dart
 import 'package:flutter/material.dart';
+import 'package:theme_extension_codegen/theme_annotation.dart';
 
-part 'text.extension.g.dart';
+part 'color_theme_extension.g.dart';
 
-class TextTheme extends _$TextTheme {
-  const TextTheme({
-    required TextStyle title,
-    required TextStyle subtitle,
+@ThemeCodegen()
+class ColorTheme extends _$ColorTheme {
+  const ColorTheme({
+    required Color scaffoldBgColor,
+    required Color textColor,
+    required Color floatingButtonColor,
   }) : super(
-    title: title,
-    subtitle: subtitle,
+    scaffoldBgColor: scaffoldBgColor,
+    textColor: textColor,
+    floatingButtonColor: floatingButtonColor,
   );
 
   @override
-  TextTheme configureLERP(TextTheme other, double t) {
+  ColorTheme configureLERP(ColorTheme other, double t) {
     throw UnimplementedError();
   }
-}
 
+  static const ColorTheme light = ColorTheme(
+    scaffoldBgColor: Color(0xffffffff),
+    textColor: Color(0xff000000),
+    floatingButtonColor: Color(0xff4c69d2),
+  );
+  static const ColorTheme dark = ColorTheme(
+    scaffoldBgColor: Color(0xff000000),
+    textColor: Color(0xffffffff),
+    floatingButtonColor: Color(0xffff9500),
+  );
+}
 ```
 
